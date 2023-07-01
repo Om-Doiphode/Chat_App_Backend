@@ -1,11 +1,14 @@
-const monogoose = require("mongoose");
-
-const mongoURI = "mongodb://localhost:27017/chatApp";
+const mongoose = require("mongoose");
+require("dotenv").config();
+const key = process.env.KEY;
+const mongoURI = `mongodb+srv://Om:${key}@cluster0.voabydv.mongodb.net/?retryWrites=true&w=majority`;
 
 const connectToMongo = () => {
-  monogoose.connect(mongoURI).then(() => {
-    console.log("Connected to Mongo");
-  });
+  mongoose
+    .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      console.log("Connected to MongoDB");
+    });
 };
 
 module.exports = connectToMongo;
