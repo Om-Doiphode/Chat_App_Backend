@@ -16,7 +16,6 @@ router.post(
   ],
   async (req, res) => {
     let success = false;
-    console.log(`REQUEST:${req.body}`);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ success, errors: errors.array() });
@@ -44,7 +43,6 @@ router.post(
         },
       };
       const authToken = jwt.sign(data, JWT_SECRET);
-      console.log({ authToken });
       success = true;
       res.json({ success, authToken });
     } catch (error) {
